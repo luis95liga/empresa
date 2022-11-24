@@ -1,0 +1,67 @@
+<div class="content-fluid">
+
+  <form [formGroup]="matriculaform">
+    <label>Nombre</label>
+    <input type="text" formControlName="Nombre">
+    <div class="text-danger" *ngIf="isvalid('Nombre') || false">
+      {{ message }}
+    </div>
+    <label>Edad</label>
+    <input type="number" formControlName="edad">
+    <div class="text-danger" *ngIf="isvalid('edad') || false">
+      {{ message }}
+    </div>
+    <div class="text-danger" *ngIf="edad">
+      {{ message1 }}
+    </div>
+    <label>Fecha de Nacimiento</label>
+    <input type="date" formControlName="fecha_nacimiento">
+    <div class="text-danger" *ngIf="isvalid('fecha_nacimiento') || false">
+      {{ message }}
+    </div>
+    <div class="text-danger" *ngIf="date">
+      {{ message2 }}
+    </div>
+    <label>Fecha de Impscripción</label>
+    <input type="date" formControlName="fecha_incripcion">
+    <div class="text-danger" *ngIf="isvalid('fecha_incripcion') || false">
+      {{ message }}
+    </div>
+    <label>Costo</label>
+    <input type="number" formControlName="costo">
+    <div class="text-danger" *ngIf="isvalid('costo') || false">
+      {{ message }}
+    </div>
+    {{ matriculaform.value|json}}
+  <button (click)="iddate()">Agragar</button>
+  </form>
+
+  <h1>Matriculas</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Fecha de Impscripción</th>
+        <th scope="col">Costo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of matriculas">
+        <th scope="row">{{ item.idmatricula }}</th>
+        <td>{{ item.Nombre }}</td>
+        <td>{{ item.edad }}</td>
+        <td>{{ datest(item.fecha_nacimiento) }}</td>
+        <td>{{ datest(item.fecha_incripcion) }}</td>
+        <td>{{ item.costo }}</td>
+        <td>
+          <button (click)="edit(item.idmatricula)">editar</button>
+          <button (click)="delete(item.idmatricula)">elininar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
